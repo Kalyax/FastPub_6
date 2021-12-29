@@ -1,6 +1,8 @@
 package fr.kalyax.listeners;
 
-import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
+import com.google.gson.Gson;
+import fr.kalyax.model.UserFP;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class UserGuildJoinEvent extends ListenerAdapter {
@@ -9,13 +11,16 @@ public class UserGuildJoinEvent extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent e){
     }*/
 
-    /*@Override
+    @Override
     public void onMessageReceived(MessageReceivedEvent e){
-        UserFP test = new UserFP(e.getAuthor());
-        UserFP.saveUser(test);
-        UserFP userFp = new UserFP(e.getAuthor().getId());
-        Gson gson = new Gson();
-        e.getChannel().sendMessage(gson.toJson(userFp)).queue();
-    }*/
+        if(!e.getAuthor().isBot()){
+            /*UserFP test = new UserFP(e.getAuthor());
+            UserFP.saveUser(test);*/
+
+            UserFP userFp = new UserFP(e.getAuthor().getId());
+            Gson gson = new Gson();
+            e.getChannel().sendMessage(gson.toJson(userFp)).queue();
+        }
+    }
 
 }

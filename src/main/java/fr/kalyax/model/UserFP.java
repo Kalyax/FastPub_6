@@ -50,7 +50,6 @@ public class UserFP {
         }
     }
 
-    //i don't know why this is provoking an error
     public UserFP(String id){
         this._id = id;
         MongoClient client = FastPub.getClient();
